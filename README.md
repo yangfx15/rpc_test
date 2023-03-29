@@ -1,1 +1,2 @@
-# rpc_test
+# grpc
+gRPC通信

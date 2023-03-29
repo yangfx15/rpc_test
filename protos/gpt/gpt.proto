@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "./;gpt";
+
+package gpt;
+
+service Greeter {
+  rpc GetGPTMessage (GPTRequest) returns (GPTReply) {}
+  rpc GetGPTStreamData (GPTRequest) returns (stream GPTReply) {}
+}
+
+message GPTRequest {
+  string content = 1;
+}
+
+message GPTReply {
+  string message = 1;
+}
