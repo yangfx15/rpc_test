@@ -23,7 +23,7 @@ const (
 	Greeter_GetGPTStreamData_FullMethodName = "/gpt.Greeter/GetGPTStreamData"
 )
 
-// GreeterClient is the client API for Greeter service.
+// GreeterClient is the rpc_client API for Greeter service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GreeterClient interface {
@@ -80,7 +80,7 @@ func (x *greeterGetGPTStreamDataClient) Recv() (*GPTReply, error) {
 	return m, nil
 }
 
-// GreeterServer is the server API for Greeter service.
+// GreeterServer is the rpc_server API for Greeter service.
 // All implementations must embed UnimplementedGreeterServer
 // for forward compatibility
 type GreeterServer interface {
