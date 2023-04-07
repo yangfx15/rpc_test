@@ -12,10 +12,16 @@ import (
 	"strings"
 )
 
-const StreamPrefix = "data:"
-const StreamEOF = "EOF"
-const StreamSuccess = "success"
-const letterBytes = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const (
+	StreamPrefix  = "data:"
+	StreamEOF     = "EOF"
+	StreamSuccess = "success"
+	letterBytes   = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+	SSEServerIP   = "http://localhost"
+	SSEServerPost = "8844"
+	SSEServerPath = "botlite/api/v2/stream"
+)
 
 type Input struct {
 	BizID       uint64       `json:"biz_id" doc:"业务ID"`
@@ -157,7 +163,7 @@ func main() {
 	input := Input{
 		BizID:       103,
 		SessionID:   getRandString(10),
-		Query:       "最出名的十道中国菜",
+		Query:       "华语影坛最出名的十位演员",
 		NeedDump:    false,
 		EmotionOn:   false,
 		UserID:      "10001",
@@ -167,7 +173,7 @@ func main() {
 	}
 	body, _ := json.Marshal(input)
 
-	req, err := http.NewRequest("POST", "http://172.18.160.161:8844/botlite/api/v2/stream", bytes.NewReader(body))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s:%s/%s", SSEServerIP, SSEServerPost, SSEServerPath), bytes.NewReader(body))
 	if err != nil {
 		log.Fatal(err)
 	}
